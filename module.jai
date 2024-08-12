@@ -1,7 +1,33 @@
 /*
-The T2D file format represents a 2D array.
+This file format represents a 2D array.
+
+The outer array is optionally indexed by an Enum type, the "key".
+The inner array is indexed sequentially.
+If no Enum key is passed in, the outer array will also be indexed sequentially.
 
 The first line is the header. It defines the order and names of fields.
+To specify a header, just write the field names you want for your struct, separating with any amount of spaces and/or tabs.
+
+Example:
+```
+field1     field2           field3  field4          field5
+```
+
+After the header, we can enter the data. Since this is a 2D array, we first enter a "key", an index into the outer array.
+To do this we enter any number of `=` equal signs, then the name of the enum variant from our key_type.
+If you just want sequential data, enter any amount of `=` equal signs then a newline.
+
+Example (named keys):
+```
+==MYVARIANT
+```
+
+Example (sequential keys):
+```
+==
+```
+
+You can write any number of equal signs and spaces in there, feel free to style it how you like.
 */
 
 TableParserResult :: struct ($row_type: Type) {
